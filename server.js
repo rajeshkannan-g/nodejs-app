@@ -69,6 +69,10 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
+app.get('/pagecount', function (req, res) {
+    res.send('1');
+});
+
 app.listen(port, ip, () => console.log('Server running on http://%s:%s', ip, port));
 
 module.exports = app;
