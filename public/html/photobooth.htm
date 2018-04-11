@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Photo Booth</div>
+    <div class="panel-body">
+        <video class='center' id="video" autoplay="autoplay" ng-show="disableStart"></video>
+        <canvas id="canvas" width="50%" ng-show="hasPhoto"></canvas>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn" ng-disabled="disableSnap" ng-click="snapshot()">Capture</button>
+                <button class="btn btn-default" ng-disabled="disableStart" ng-click="start()">Take Another</button>
+            </div>
+        </div>
+    </div>
+</div>

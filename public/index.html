@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<title>AngularJS BootstrapUI Web Application on ExpressJS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+	<link href="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.css" rel="stylesheet">
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+	<script type="text/javascript" src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>
+	<script type="text/javascript" src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
+
+	<!-- Page Scripts -->
+	<script type="text/javascript" src="./js/index.js"></script>
+	<script type="text/javascript" src="./js/components.js"></script>
+	<script type="text/javascript" src="./js/layouts.js"></script>
+	<script type="text/javascript" src="./js/photobooth.js"></script>
+
+	<!-- Page Level Styles -->
+	<style type="text/css">
+		body {
+			padding-top: 10px;
+		}
+	</style>
+
+</head>
+<body class="container" ng-controller="indexController">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<span class="glyphicon glyphicon-home"/>
+				</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<div class="btn-group" uib-dropdown style="padding: 10px 15px;">
+					<button id="basic" type="button" class="btn btn-primary" uib-dropdown-toggle>
+						Basic <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" uib-dropdown-menu role="menu">
+						<li role="menuitem" ng-repeat="page in pageList">
+							<a ng-href="{{page.pageUrl}}">{{page.label}}</a>
+						</li>
+					</ul>
+				</div>
+			</ul>
+		</div>
+	</nav>
+	<div ng-view ng-isolate-scope></div>
+</body>
+</html>

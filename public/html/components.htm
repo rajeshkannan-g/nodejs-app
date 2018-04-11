@@ -1,0 +1,113 @@
+	<div class="text-center">
+		<h2>Angular and Bootstrap UI - Basic Components 1</h2>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<a href="" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">
+				{{isCollapsed ? 'Expand Me' : 'Collapse Me'}}
+			</a>
+		</div>
+		<div uib-collapse="isCollapsed">
+			<div class="panel-body">
+				<uib-tabset active="tab1">
+					<uib-tab index="0" heading="Output"><br/>
+						<p>This is a collapsible panel which uses <code>uib-collapse</code> directive. Try collapsing it through the button in the panel title.</p>
+					</uib-tab>
+					<uib-tab index="1" heading="Markup">
+						<pre prettyprint>&lt;a href="" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed"&gt;
+  {{isCollapsed ? 'Expand Me' : 'Collapse Me'}}
+&lt;/a&gt;
+&lt;p&gt;This is a collapsible panel which uses &lt;code&gt;uib-collapse&lt;/code&gt; directive. Try collapsing it through the button in the panel title.&lt;/p&gt;</pre>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<pre><code>{{isCollapsed ? 'Collapsed' : 'Expanded'}}</code></pre>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Choice Buttons</h3>
+		</div>
+		<div class="panel-body">
+			<uib-tabset active="tab2">
+				<uib-tab index="0" heading="Output">
+					<br/>
+					<p>Did you have food? Select the applicable options.</p>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary" ng-model="bigData.breakfast" uib-btn-checkbox>
+							Breakfast
+						</label>
+						<label class="btn btn-primary" ng-model="bigData.lunch" uib-btn-checkbox>
+							Lunch
+						</label>
+						<label class="btn btn-primary" ng-model="bigData.dinner" uib-btn-checkbox>
+							Dinner
+						</label>
+					</div>
+				</uib-tab>
+				<uib-tab index="1" heading="Markup">
+					<pre prettyprint>&lt;p&gt;Did you have food? Select the applicable options.&lt;/p&gt;
+&lt;div class="btn-group" data-toggle="buttons"&gt;
+	&lt;label class="btn btn-primary" ng-model="bigData.breakfast" uib-btn-checkbox&gt;
+		Breakfast
+	&lt;/label&gt;
+	&lt;label class="btn btn-primary" ng-model="bigData.lunch" uib-btn-checkbox&gt;
+		Lunch
+	&lt;/label&gt;
+	&lt;label class="btn btn-primary" ng-model="bigData.dinner" uib-btn-checkbox&gt;
+		Dinner
+	&lt;/label&gt;
+&lt;/div&gt;</pre>
+				</uib-tab>
+				<uib-tab index="2" heading="JS">
+				<pre prettyprint>angular.module('app').controller('page1Controller', ['$scope', function($scope) {
+	$scope.bigData = {};
+
+	$scope.bigData.breakfast = false;
+	$scope.bigData.lunch = false;
+	$scope.bigData.dinner = false;
+}]);</pre>
+				</uib-tab>
+			</uib-tabset>
+		</div>
+		<div ng-if="tab2==0" class="panel-footer">
+			<pre><code>{{ bigData | json }}</code></pre>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Radio Buttons</h3>
+		</div>
+		<div class="panel-body">
+			<uib-tabset active="tab3">
+				<uib-tab index="0" heading="Output"><br/>
+					<p>What is your most favorite part of a meal?.</p>
+					<br/>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Soup'">Soup</label>
+		    			<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Starter'">Starter</label>
+		    			<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Main Course'">Main Course</label>
+		    			<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Dessert'">Dessert</label>
+					</div>
+				</uib-tab>
+				<uib-tab index="1" heading="Markup">
+					<pre prettyprint>&lt;p&gt;What is your most favorite part of a meal?.&lt;/p&gt;
+&lt;br/&gt;
+&lt;div class="btn-group" data-toggle="buttons"&gt;
+	&lt;label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Soup'"&gt;Soup&lt;/label&gt;
+	&lt;label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Starter'"&gt;Starter&lt;/label&gt;
+	&lt;label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Main Course'"&gt;Main Course&lt;/label&gt;
+	&lt;label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Dessert'"&gt;Dessert&lt;/label&gt;
+&lt;/div&gt;</pre>
+				</uib-tab>
+			</uib-tabset>
+		</div>
+		<div ng-if="tab3 == 0" class="panel-footer">
+			<pre><code>{{ radioModel }}</code></pre>
+		</div>
+	</div>

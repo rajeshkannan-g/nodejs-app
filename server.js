@@ -63,8 +63,10 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
+app.use('/', express.static('public'))
+
 app.get('/', function (req, res) {
-    res.send('Yup! Its working' + (!global.db ? ', but no db though :(':''));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 app.listen(port, ip, () => console.log('Server running on http://%s:%s', ip, port));
