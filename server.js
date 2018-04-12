@@ -45,8 +45,9 @@ var initDb = function(callback) {
       callback(err);
       return;
     }
-    db = conn;
+    global.db = conn;
     console.log('Connected to MongoDB at: %s', mongoURL);
+    callback();
   });
 };
 
@@ -57,13 +58,15 @@ app.use(function(err, req, res, next){
 });
 
 initDb(function(err){
-  console.log('Error connecting to Mongo. Message:\n'+err);
-});
+  if(err)
+    console.log('Error connecting to Mongo. Message:\n'+err);
+  else {
+    app.use('/', express.static('public'))
 
-app.use('/', express.static('public'))
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+    app.get('/', function (req, res) {
+        res.sendFile(path.join(__dirname + '/public/index.html'));
+    });
+  }
 });
 
 app.get('/hi', function (req, res) {
