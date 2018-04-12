@@ -32,11 +32,6 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   }
 }
 
-if (mongoURL == null) {
-  console.error('Error: Database details is not available!!')
-  return;
-}
-
 global.db = null;
 
 var initDb = function(callback) {
