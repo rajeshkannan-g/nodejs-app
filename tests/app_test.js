@@ -4,16 +4,19 @@ var server   = require('../server'),
     should   = chai.should();
 
 chai.use(chaiHTTP);
+var expect = chai.expect;
 
 reqServer = process.env.HTTP_TEST_SERVER || server
 
 describe('Basic routes tests', function() {
 
-    it('GET to / should return 200', function(done){
+    it('Get to /hi should return \'Hello there!\'', function(done){
         chai.request(reqServer)
-        .get('/')
+        .get('/hi')
         .end(function(err, res) {
-            res.should.have.status(200);
+            expect(err).to.be.null;
+            expect(res).to.have.status(200);
+            expect(res.text).to.be.eql('Hello there!');
             done();
         })
 

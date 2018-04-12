@@ -71,8 +71,9 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-app.get('/pagecount', function (req, res) {
-    res.send('1');
+app.get('/hi', function (req, res) {
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end('Hello there!');
 });
 
 app.listen(port, ip, () => console.log('Server running on http://%s:%s', ip, port));
