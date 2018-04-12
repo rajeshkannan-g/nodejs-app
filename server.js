@@ -32,8 +32,10 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   }
 }
 
-if(mongoURL == null)
-  mongoURL = "mongodb://admin:admin@127.0.0.1:27017/application";
+if (mongoURL == null) {
+  console.error('Error: Database details is not available!!')
+  return;
+}
 
 global.db = null;
 
