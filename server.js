@@ -11,28 +11,29 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
-require('./app/authentication')(passport);
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.use(session({
-  secret: 'vmlpuram',
-  name: 'nodejs-app',
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: db.connection,
-    ttl: 2 * 24 * 60 * 60
-  })
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash())
-
-app.set('view engine', 'ejs');
-
 var initApp = function () {
+
+  require('./app/authentication')(passport);
+  app.use(cookieParser());
+  app.use(bodyParser.urlencoded({extended: false}));
+  
+  app.use(session({
+    secret: 'vmlpuram',
+    name: 'nodejs-app',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: db.connection,
+      ttl: 2 * 24 * 60 * 60
+    })
+  }));
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(flash())
+  
+  app.set('view engine', 'ejs');
+
   var router = require('./app/router');
   app.use('/', router);
   console.log('Initialized application.');
@@ -49,7 +50,7 @@ app.get('/hi', function (req, res) {
 });
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-  ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+  ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 app.listen(port, ip, () => console.log(`Server running on http://${ip}:${port}`));
 

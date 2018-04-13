@@ -6,7 +6,7 @@ var router = express.Router();
 router.use(function (req, res, next) {
     if (req.isAuthenticated() || req.url.startsWith('/login') || 
         req.url.startsWith('/signup') || req.url.startsWith('/auth/') ||
-        req.url.startsWith('/static/img/'))
+        req.url.startsWith('/static/img/') || req.url.startsWith('/hi'))
         next();
     else
         res.render('login.ejs', { message: req.flash('loginMessage'), signup: false });
