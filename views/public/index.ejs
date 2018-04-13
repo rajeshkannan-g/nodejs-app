@@ -16,15 +16,16 @@
 	<script type="text/javascript" src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
 
 	<!-- Page Scripts -->
-	<script type="text/javascript" src="./js/index.js"></script>
-	<script type="text/javascript" src="./js/components.js"></script>
-	<script type="text/javascript" src="./js/layouts.js"></script>
-	<script type="text/javascript" src="./js/photobooth.js"></script>
+	<script type="text/javascript" src="./static/js/index.js"></script>
+	<script type="text/javascript" src="./static/js/components.js"></script>
+	<script type="text/javascript" src="./static/js/layouts.js"></script>
+	<script type="text/javascript" src="./static/js/photobooth.js"></script>
 
 	<!-- Page Level Styles -->
 	<style type="text/css">
 		body {
 			padding-top: 10px;
+			background-image: url("/static/img/background.jpg");
 		}
 	</style>
 
@@ -40,11 +41,14 @@
 			<ul class="nav navbar-nav navbar-right">
 				<div class="btn-group" uib-dropdown style="padding: 10px 15px;">
 					<button id="basic" type="button" class="btn btn-primary" uib-dropdown-toggle>
-						Basic <span class="caret"></span>
+							<%= username %> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" uib-dropdown-menu role="menu">
 						<li role="menuitem" ng-repeat="page in pageList">
 							<a ng-href="{{page.pageUrl}}">{{page.label}}</a>
+						</li>
+						<li role="menuitem">
+							<a ng-href="/logout">Logout</a>
 						</li>
 					</ul>
 				</div>

@@ -3,19 +3,19 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 angular.module('app').config(['$routeProvider',function($routeProvider) {
 	$routeProvider
 	.when("/layouts", {
-		templateUrl : "html/layouts.htm",
+		templateUrl : "static/html/layouts.htm",
 		controller : "LayoutsController"
 	})
 	.when("/components", {
-		templateUrl : "html/components.htm",
+		templateUrl : "static/html/components.htm",
 		controller : "ComponentsController"
 	})
 	.when("/photobooth", {
-		templateUrl : "html/photobooth.htm",
+		templateUrl : "static/html/photobooth.htm",
 		controller : "PhotoBoothController"
 	})
 	.otherwise({
-		templateUrl: 'html/main.htm'
+		templateUrl: 'static/html/main.htm'
 	});
 }]);
 
