@@ -44,7 +44,7 @@ if (db.connection.readyState != 1)
 else
   initApp();
 
-app.get('/hi', function (req, res) {
+app.get('/pagecount', function (req, res) {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end('Hello there!');
 });

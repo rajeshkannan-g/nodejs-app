@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
+
 <head>
 	<title>AngularJS/BootstrapUI Web Application on NodeJS/ExpressJS</title>
 	<meta charset="utf-8">
@@ -30,18 +31,20 @@
 	</style>
 
 </head>
+
 <body class="container" ng-controller="indexController">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">
-					<span class="glyphicon glyphicon-home"/>
+					<span class="glyphicon glyphicon-home" />
 				</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<div class="btn-group" uib-dropdown style="padding: 10px 15px;">
 					<button id="basic" type="button" class="btn btn-primary" uib-dropdown-toggle>
-							<%= username %> <span class="caret"></span>
+						<%= username %>
+							<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" uib-dropdown-menu role="menu">
 						<li role="menuitem" ng-repeat="page in pageList">
@@ -55,6 +58,12 @@
 			</ul>
 		</div>
 	</nav>
-	<div ng-view ng-isolate-scope></div>
+	<div class="panel panel-default">
+		<div class="panel-body" style="min-height: 80vh;">
+			<div ng-view ng-isolate-scope></div>
+		</div>
+	</div>
+
 </body>
+
 </html>
