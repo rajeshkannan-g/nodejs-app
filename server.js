@@ -11,6 +11,20 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+  ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+var extAppURL = process.env.EXTERNAL_HOST_NAME || '127.0.0.1';
+
+if(process.env.NODE_ENV == 'production') {
+  extAppURL = 'https://' + extAppURL;
+}
+else {
+  extAppURL = 'http://' + extAppURL + ':' + port;
+}
+
+global.EXT_APP_URL = extAppURL;
+
 var initApp = function () {
 
   require('./app/authentication')(passport);
@@ -43,9 +57,6 @@ if (db.connection.readyState != 1)
   db.connection.on('connected', initApp);
 else
   initApp();
-
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-  ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
   
 
 app.get('/hi', function (req, res) {
