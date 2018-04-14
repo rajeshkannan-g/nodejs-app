@@ -44,11 +44,6 @@ if (db.connection.readyState != 1)
 else
   initApp();
 
-app.get('/pagecount', function (req, res) {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end('Hello there!');
-});
-
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
   ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
