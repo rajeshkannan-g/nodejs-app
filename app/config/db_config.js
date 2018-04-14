@@ -1,4 +1,4 @@
-var mongoURL = process.env.MONGO_URL || process.env.OPENSHIFT_MONGODB_DB_URL;
+var mongoURL = process.env.MONGO_URL || process.env.MONGODB_URI || process.env.OPENSHIFT_MONGODB_DB_URL;
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
