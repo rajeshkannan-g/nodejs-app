@@ -3,10 +3,13 @@ var path = require('path');
 var passport = require('passport');
 var router = express.Router();
 
+function isPublic(req) {
+    return req.url.startsWith('/login') || req.url.startsWith('/signup') || 
+        req.url.startsWith('/auth/') || req.url.startsWith('/favicon.ico')|| req.url.startsWith('/hi')
+}
+
 router.use(function (req, res, next) {
-    if (req.isAuthenticated() || req.url.startsWith('/login') || 
-        req.url.startsWith('/signup') || req.url.startsWith('/auth/') ||
-        req.url.startsWith('/static/img/') || req.url.startsWith('/hi')) {
+    if (req.isAuthenticated() || isPublic(req)) {
             if(req.isAuthenticated() && req.url.startsWith('/signup'))
                 res.redirect("/");
             else
@@ -28,6 +31,10 @@ router.use(function (err, req, res, next) {
 });
 
 router.use('/static', express.static('views/public'));
+
+router.get('/favicon.ico', function(req, res) {
+    res.sendFile(path.join(__dirname, '../favicon.ico'));
+});
 
 router.get('/', function (req, res) {
     res.render('public/index.ejs', { username: (req.user.local.name || req.user.facebook.name || req.user.google.name) });
