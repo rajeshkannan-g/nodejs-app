@@ -33,7 +33,8 @@ module.exports = function (passport) {
                         var newUser = new User();
                         newUser.local.username = username;
                         newUser.local.password = newUser.generateHash(password);
-                        newUser.local.name = req.body.displayname;
+                        newUser.local.email = req.body.mail;
+                        newUser.local.displayname = req.body.displayname;
 
                         newUser.save(function (err) {
                             if (err)
@@ -42,7 +43,7 @@ module.exports = function (passport) {
                         })
                     } else {
                         var user = req.user;
-                        user.local.username = email;
+                        user.local.username = username;
                         user.local.password = user.generateHash(password);
 
                         user.save(function (err) {
@@ -94,7 +95,7 @@ module.exports = function (passport) {
                         if (user) {
                             if (!user.facebook.token) {
                                 user.facebook.token = accessToken;
-                                user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+                                user.facebook.displayname = profile.name.givenName + ' ' + profile.name.familyName;
                                 user.facebook.email = profile.emails[0].value;
                                 user.save(function (err) {
                                     if (err)
@@ -109,7 +110,7 @@ module.exports = function (passport) {
                             console.log(profile);
                             newUser.facebook.id = profile.id;
                             newUser.facebook.token = accessToken;
-                            newUser.facebook.name = profile.displayName;
+                            newUser.facebook.displayname = profile.displayName;
                             newUser.facebook.email = profile.email ? profile.email : '';
 
                             newUser.save(function (err) {
@@ -124,8 +125,8 @@ module.exports = function (passport) {
                     var user = req.user;
                     user.facebook.id = profile.id;
                     user.facebook.token = accessToken;
-                    user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-                    user.facebook.email = profile.emails[0].value;
+                    user.facebook.displayname = profile.name.givenName + ' ' + profile.name.familyName;
+                    user.facebook.email = profile.email ? profile.email : '';
 
                     user.save(function (err) {
                         if (err)
@@ -155,7 +156,7 @@ module.exports = function (passport) {
                         if (user) {
                             if (!user.google.token) {
                                 user.google.token = accessToken;
-                                user.google.name = profile.displayName;
+                                user.google.displayname = profile.displayName;
                                 user.google.email = profile.emails[0].value;
                                 user.save(function (err) {
                                     if (err)
@@ -168,7 +169,7 @@ module.exports = function (passport) {
                             var newUser = new User();
                             newUser.google.id = profile.id;
                             newUser.google.token = accessToken;
-                            newUser.google.name = profile.displayName;
+                            newUser.google.displayname = profile.displayName;
                             newUser.google.email = profile.emails[0].value;
 
                             newUser.save(function (err) {
@@ -182,7 +183,7 @@ module.exports = function (passport) {
                     var user = req.user;
                     user.google.id = profile.id;
                     user.google.token = accessToken;
-                    user.google.name = profile.displayName;
+                    user.google.displayname = profile.displayName;
                     user.google.email = profile.emails[0].value;
 
                     user.save(function (err) {

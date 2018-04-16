@@ -37,7 +37,7 @@ router.get('/favicon.ico', function(req, res) {
 });
 
 router.get('/', function (req, res) {
-    res.render('public/index.ejs', { username: (req.user.local.name || req.user.facebook.name || req.user.google.name) });
+    res.render('public/index.ejs', { displayname: (req.user.local.displayname || req.user.facebook.displayname || req.user.google.displayname) });
 });
 
 router.post('/login', passport.authenticate('local-login', {

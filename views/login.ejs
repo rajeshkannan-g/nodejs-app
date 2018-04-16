@@ -63,8 +63,18 @@
                       <i class="material-icons prefix">format_color_text</i>
                       <input id="displayname" name="displayname" type="text" class="validate" required
                         oninput="this.setCustomValidity('')"
-                        oninvalid="this.setCustomValidity('Please enter display name!!')">
+                        oninvalid="this.setCustomValidity('Please enter your display name!!')">
                       <label for="displayname" class="active">Display Name</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">contact_mail</i>
+                      <input id="mail" name="mail" type="text" class="validate" required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        oninput="this.setCustomValidity('')"
+                        oninvalid="this.setCustomValidity('Please enter a valid mail id!!')">
+                      <label for="displayname" class="active">Mail Id</label>
                     </div>
                   </div>
                   <% } %>
