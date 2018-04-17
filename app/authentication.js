@@ -32,7 +32,7 @@ module.exports = function (passport) {
                     if (!req.user) {
                         var newUser = new User();
                         newUser.local.username = username;
-                        newUser.local.password = newUser.generateHash(password);
+                        newUser.local.password = password;
                         newUser.local.email = req.body.mail;
                         newUser.local.displayname = req.body.displayname;
 
@@ -44,7 +44,7 @@ module.exports = function (passport) {
                     } else {
                         var user = req.user;
                         user.local.username = username;
-                        user.local.password = user.generateHash(password);
+                        user.local.password = password;
 
                         user.save(function (err) {
                             if (err)
@@ -70,7 +70,7 @@ module.exports = function (passport) {
                         return done(err);
                     if (!user)
                         return done(null, false, req.flash('loginMessage', 'No user found'));
-                    if (!user.validPassword(password)) {
+                    if (!user.validatePassword(password)) {
                         return done(null, false, req.flash('loginMessage', 'Invalid password'));
                     }
                     return done(null, user);
@@ -96,7 +96,7 @@ module.exports = function (passport) {
                             if (!user.facebook.token) {
                                 user.facebook.token = accessToken;
                                 user.facebook.displayname = profile.name.givenName + ' ' + profile.name.familyName;
-                                user.facebook.email = profile.emails[0].value;
+                                user.facebook.email = profile.email ? profile.email : '';
                                 user.save(function (err) {
                                     if (err)
                                         throw err;

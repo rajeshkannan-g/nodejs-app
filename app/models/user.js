@@ -55,13 +55,14 @@ var UserSchema = new mongoose.Schema({
 	},
 });
 
-
-UserSchema.methods.generateHash = function(password){
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(9));
-}
-
-UserSchema.methods.validPassword = function(password){
+UserSchema.methods.validatePassword = function(password){
 	return bcrypt.compareSync(password, this.local.password);
 }
+
+UserSchema.pre('save', function(next) {
+    if(this.local.password)
+        this.local.password = bcrypt.hashSync(this.local.password, bcrypt.genSaltSync(9))
+    next();
+});
 
 module.exports = mongoose.model('User', UserSchema);
